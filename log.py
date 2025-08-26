@@ -1,19 +1,15 @@
-# Импорт используемых библиотек
 import os
 import pandas as pd
 from datetime import date, datetime
 
 
-# Ф-ция логгирования
 def log(func):
     def wrapper(*args, **kwargs):
         original_result = func(*args, **kwargs)
-
         username = os.getlogin()
         func_name = func.__name__
         formatted_date = date.today().strftime("%d-%m-%Y")
         formatted_time = datetime.now().strftime("%H:%M:%S")
-        
         if os.path.exists("logs.csv"):
             file_df = pd.read_csv('logs.csv')
             new_id = len(file_df)
